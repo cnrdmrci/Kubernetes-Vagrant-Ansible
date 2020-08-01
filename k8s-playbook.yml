@@ -1,0 +1,8 @@
+---
+- name: All Server 
+  hosts: all
+  become: yes
+  roles:
+    - role: docker
+      version: 18.06.3~ce~3-0~ubuntu
+
