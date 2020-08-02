@@ -9,3 +9,23 @@
       version: 1.18.0-00
       ip: "{{ ansible_host }}"
 
+- name: Master Server
+  hosts: master
+  become: yes
+  roles:
+  - role: k8s-master
+    version: 1.18.0-00
+    cidr: 10.244.0.0/16
+    ip: "{{ hostvars['k8s-master']['ansible_host'] }}"
+    user: "{{ hostvars['k8s-master']['ansible_user'] }}"
+    k8s_middle_server: k8s_middle_server
+
+- name: Worker Servers
+  gather_facts: yes
+  hosts: workers
+  become: yes
+  roles:
+  - role: k8s-worker
+    version: 1.18.0-00
+    k8s_middle_server: k8s_middle_server
+
