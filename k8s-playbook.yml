@@ -5,4 +5,7 @@
   roles:
     - role: docker
       version: 18.06.3~ce~3-0~ubuntu
+    - role: k8s-common
+      version: 1.18.0-00
+      ip: "{{ ansible_host }}"
 
